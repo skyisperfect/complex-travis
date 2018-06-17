@@ -1,7 +1,7 @@
 #include "complex.hpp"
 Complex::Complex():Re(0.0),Im(0.0){};
 Complex::Complex(double re, double im): Re(re), Im(im){}
-Complex::Complex(const Complex& other): Re(other.Re), Im(other.Im){}
+Complex::Complex(const Complex& sF): Re(sF.Re), Im(sF.Im){}
 
 void Complex::print(ostream& os){
     if(Im < 0){
@@ -19,11 +19,11 @@ double Complex::imaginary(){
 }
 
 
-Complex Complex::add(const Complex& other){
-    return Complex(Re+other.Re, Im+other.Im);
+Complex Complex::add(const Complex& sF){
+    return Complex(Re+sF.Re, Im+sF.Im);
 }
-Complex Complex::sub(const Complex& other){
-    return Complex(Re-other.Re, Im-other.Im);
+Complex Complex::sub(const Complex& sF){
+    return Complex(Re-sF.Re, Im-sF.Im);
 }
 Complex Complex::mul(int number){
     return Complex(Re*number, Im*number);
@@ -42,41 +42,41 @@ Complex Complex::div(int number){
     return Complex(Re, Im);
 }
 
-Complex Complex::operator*(const Complex& other){
-    return Complex(Re*other.Re - Im*other.Im, Im*other.Re + Re*other.Im);
+Complex Complex::operator*(const Complex& sF){
+    return Complex(Re*sF.Re - Im*sF.Im, Im*sF.Re + Re*sF.Im);
 }
-Complex Complex::operator/(const Complex& other){
-    return Complex((Re*other.Re + Im*other.Im)/(other.Re*other.Re + other.Im*other.Im),(-Re*other.Im + Im*other.Re)/(other.Re*other.Re + other.Im*other.Im));
+Complex Complex::operator/(const Complex& sF){
+    return Complex((Re*sF.Re + Im*sF.Im)/(sF.Re*sF.Re + sF.Im*sF.Im),(-Re*sF.Im + Im*sF.Re)/(sF.Re*sF.Re + sF.Im*sF.Im));
 }
-Complex Complex::operator+=(const Complex& other){
-    Re += other.Re;
-    Im += other.Im;
+Complex Complex::operator+=(const Complex& sF){
+    Re += sF.Re;
+    Im += sF.Im;
     return Complex(Re, Im);
 }
-Complex Complex::operator-=(const Complex& other){
-    Re -= other.Re;
-    Im -= other.Im;
+Complex Complex::operator-=(const Complex& sF){
+    Re -= sF.Re;
+    Im -= sF.Im;
     return Complex(Re, Im);
 }
-Complex Complex::operator*=(const Complex& other){
+Complex Complex::operator*=(const Complex& sF){
     double  tmp;
-    tmp = Re*other.Re - Im*other.Im;
-    Im = Im*other.Re + Re*other.Im;
+    tmp = Re*sF.Re - Im*sF.Im;
+    Im = Im*sF.Re + Re*sF.Im;
     Re = tmp;
     return Complex(Re,Im);
 }
-Complex Complex::operator/=(const Complex& other){
+Complex Complex::operator/=(const Complex& sF){
     double tmp;
-    tmp = (Re*other.Re + Im*other.Im)/(other.Re*other.Re + other.Im*other.Im);
-    Im =  (-Re*other.Im + Im*other.Re)/(other.Re*other.Re + other.Im*other.Im);
+    tmp = (Re*sF.Re + Im*sF.Im)/(other.Re*sF.Re + sF.Im*sF.Im);
+    Im =  (-Re*sF.Im + Im*sF.Re)/(sF.Re*sF.Re + sF.Im*sF.Im);
     Re = tmp;
     return Complex(Re,Im);
 }
-Complex Complex::operator=(const Complex& other){
-    Re = other.Re;
-    Im = other.Im;
+Complex Complex::operator=(const Complex& sF){
+    Re = sF.Re;
+    Im = sF.Im;
     return Complex(Re,Im);
 }
-bool Complex::operator==(const Complex& other){
-    return (Re == other.Re && Im == other.Im);
+bool Complex::operator==(const Complex& sF){
+    return (Re == sF.Re && Im == sF.Im);
 }
