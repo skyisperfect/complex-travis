@@ -1,3 +1,6 @@
+//
+// Created by levin on 24.04.18.
+//
 
 #ifndef LAB_6_COMPLEX_H
 #define LAB_6_COMPLEX_H
@@ -6,30 +9,33 @@
 #include <iostream>
 
 using namespace std;
-class complex
+class Complex
 {
 private:
     double Re, Im;
 public:
-    complex();
-    complex(double, double);
+    Complex();
+    Complex(double, double);
     void print(ostream&);
-    complex add(const complex&);
-    complex sub(const complex&);
-    complex mul(int a);
-    complex div(int a);
+    Complex add(const Complex&);
+    Complex sub(const Complex&);
+    Complex mul(int a);
+    Complex div(int a);
     double real();
     double imaginary();
-    complex(const complex&);
-    complex operator*(const complex&);
-    complex operator/(const complex&);
-    complex operator+=(const complex&);
-    complex operator-=(const complex&);
-    complex operator*=(const complex&);
-    complex operator/=(const complex&);
-    complex operator=(const complex&);
-    bool operator==(const complex&);
-
+    Complex(const Complex&);
+    Complex operator*(const Complex&);
+    Complex operator/(const Complex&);
+    Complex operator+=(const Complex&);
+    Complex operator-=(const Complex&);
+    Complex operator*=(const Complex&);
+    Complex operator/=(const Complex&);
+    Complex operator=(const Complex&);
+    bool operator==(const Complex&);
+//     template <class CharT, class Traits>
+//     friend basic_ostream<CharT, Traits>& operator <<(basic_ostream<CharT, Traits>&, const Complex&);
+//     template <class CharT, class Traits>
+//     friend basic_istream<CharT, Traits>& operator >> (basic_istream<CharT, Traits>&, Complex&);
 };
 
 #endif //LAB_6_COMPLEX_H

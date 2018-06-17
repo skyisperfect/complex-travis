@@ -1,96 +1,82 @@
 #include "complex.hpp"
+Complex::Complex():Re(0.0),Im(0.0){};
+Complex::Complex(double re, double im): Re(re), Im(im){}
+Complex::Complex(const Complex& other): Re(other.Re), Im(other.Im){}
 
-
-	complex::complex(){
-Re=0.0;
-Im=0.0; 
+void Complex::print(ostream& os){
+    if(Im < 0){
+        os << Re << Im << "i" << endl;
+    }else{
+        os << Re <<"+"<< Im << "i" << endl;
+    }
 }
-	complex::complex(double RE, double IM){
-Re=RE;
-Im=IM; 
+
+double Complex::real(){
+    return Re;
 }
-	complex::complex(const complex& sF){
-Re=sF.Re;
-Im=sF.Im;
-}
-	void complex::print(ostream& print){
-		print << Re << " + " << Im << "i" << endl; 
-	}
-	
-	double complex::real(){
-    		return Re;
-		}
-	double complex::imaginary(){
-    	return Im;
-		}
-
-	void complex::add(const complex& sF){
-		Re += sF.Re;
-		Im += sF.Im;
-	}
-
-	void complex::sub(const complex& sF){
-		Re -= sF.Re;
-		Im -= sF.Im;
-	}
-
-	void complex::mul(int M){
-		Re *= M;
-		Im *= M;
-	}
-
-	void complex::div(int D){
-	try{
-		if(D==0){
-			throw 1;
-		}
-
-		Re /= D;
-		Im /= D;
-	}catch (int D){
-	cout << "btw division by zero" << endl;
-	}
+double Complex::imaginary(){
+    return Im;
 }
 
 
- complex complex::operator*(const complex& sF){
-        return complex(Re*sF.Re - Im*sF.Im, Im*sF.Re + Re*sF.Im);
+Complex Complex::add(const Complex& other){
+    return Complex(Re+other.Re, Im+other.Im);
+}
+Complex Complex::sub(const Complex& other){
+    return Complex(Re-other.Re, Im-other.Im);
+}
+Complex Complex::mul(int number){
+    return Complex(Re*number, Im*number);
+}
+Complex Complex::div(int number){
+    try{
+        if(number == 0){
+            throw 1;
+        }
+        Re = Re/number;
+        Im = Im/number;
+    }catch (int number){
+        cout << "Division by zero" << endl;
+
     }
-    complex complex::operator/(const complex& sF){
-        return complex((Re*sF.Re + Im*sF.Im)/(sF.Re*sF.Re + sF.Im*sF.Im),(-Re*sF.Im + Im*sF.Re)/(sF.Re*sF.Re + sF.Im*sF.Im));
-    }
-    complex complex::operator+=(const complex& sF){
-        Re += sF.Re;
-        Im += sF.Im;
-        return complex(Re, Im);
-    }
-    complex complex::operator-=(const complex& sF){
-        Re -= sF.Re;
-        Im -= sF.Im;
-        return complex(Re, Im);
-    }
-    complex complex::operator*=(const complex& sF){
-        double  tmp;
-        tmp = Re*sF.Re - Im*sF.Im;
-        Im = Im*sF.Re + Re*sF.Im;
-        Re = tmp;
-        return complex(Re,Im);
-    }
-    complex complex::operator/=(const complex& sF){
-        double tmp;
-        tmp = (Re*sF.Re + Im*sF.Im)/(sF.Re*sF.Re + sF.Im*sF.Im);
-        Im =  (-Re*sF.Im + Im*sF.Re)/(sF.Re*sF.Re + sF.Im*sF.Im);
-        Re = tmp;
-        return complex(Re,Im);
-    }
-    complex complex::operator=(const complex& sF){
-        Re = sF.Re;
-        Im = sF.Im;
-        return complex(Re,Im);
-    }
-    bool complex::operator==(const complex& sF){
-        return (Re == sF.Re && Im == sF.Im);
-    } 
-    
-   
+    return Complex(Re, Im);
+}
+
+Complex Complex::operator*(const Complex& other){
+    return Complex(Re*other.Re - Im*other.Im, Im*other.Re + Re*other.Im);
+}
+Complex Complex::operator/(const Complex& other){
+    return Complex((Re*other.Re + Im*other.Im)/(other.Re*other.Re + other.Im*other.Im),(-Re*other.Im + Im*other.Re)/(other.Re*other.Re + other.Im*other.Im));
+}
+Complex Complex::operator+=(const Complex& other){
+    Re += other.Re;
+    Im += other.Im;
+    return Complex(Re, Im);
+}
+Complex Complex::operator-=(const Complex& other){
+    Re -= other.Re;
+    Im -= other.Im;
+    return Complex(Re, Im);
+}
+Complex Complex::operator*=(const Complex& other){
+    double  tmp;
+    tmp = Re*other.Re - Im*other.Im;
+    Im = Im*other.Re + Re*other.Im;
+    Re = tmp;
+    return Complex(Re,Im);
+}
+Complex Complex::operator/=(const Complex& other){
+    double tmp;
+    tmp = (Re*other.Re + Im*other.Im)/(other.Re*other.Re + other.Im*other.Im);
+    Im =  (-Re*other.Im + Im*other.Re)/(other.Re*other.Re + other.Im*other.Im);
+    Re = tmp;
+    return Complex(Re,Im);
+}
+Complex Complex::operator=(const Complex& other){
+    Re = other.Re;
+    Im = other.Im;
+    return Complex(Re,Im);
+}
+bool Complex::operator==(const Complex& other){
+    return (Re == other.Re && Im == other.Im);
 }
