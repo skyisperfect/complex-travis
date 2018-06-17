@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cmath>
-
+#include "complex.hpp"
 using namespace std;
 
 class complex{
@@ -89,33 +89,7 @@ Im=sF.Im;
     }
     bool operator==(const complex& sF){
         return (Re == sF.Re && Im == sF.Im);
-    }
-
-
-    template <class CharT, class Traits>
-    friend basic_ostream<CharT, Traits>& operator<<(basic_ostream<CharT, Traits>& os, const complex& sF){
-        os << sF.Re << "+" << sF.Im << "i" << std::endl;
-        }
-       
-
+    } 
     
    
-};
-
-
-int main() {
-
-complex x(1.0, 4.2);
-complex y(3.2, 3.22);
-x.sub(y);
-x.print(std::cout);
-x.add(y);
-x.print(std::cout);
-x.mul(5);
-x.print(std::cout);
-y*=(x);
-y.print(std::cout);
-y.div(0);
-
-return 0;
-}	
+}
